@@ -4,25 +4,27 @@ class C_AiStore:
         self.store_name = store_name
         self.store_id = store_id
         self.store_address = store_address
-        self.product_unit = 0
-        self.product_price = 0
+        self.store_count = 0
+        self.store_price = 0
 
     # 상품개수, 상품가격
-    def set_product(self, product_unit, product_price):
-        self.product_unit += product_unit
-        self.product_price += product_price
+    def set_product(self, store_count, store_price):
+        self.store_count += store_count
+        self.store_price += store_price
 
     # 구매개수, 상품가격
     def buy_item(self, order_unit, input_price):
-        product_unit = 0
-        bank_balance = 0
-        self.order_unit -= product_unit
+        self.order_unit += order_unit
+        self.input_price += input_price
+        self.store_count = 0
+        self.store_price = 1
 
-        if self.bank_balance < bank_balance:
+
+        if self.bank_balance:
             print('잔돈은   입니다')
-        elif self.product_unit < product_unit:
+        elif self.product_unit < order_unit:
             print('재고가   부족합니다')
-        elif self.iput_price < product_price:
+        elif self.iput_price < store_price:
             print('금액이   부족합니다')
         else:
             print('구매 개수와 상품 가격을 입력하세요')
@@ -63,14 +65,17 @@ if __name__ == '__main__':
         button = int(input())
 
         if button == 1:
-            info = int(input('이름: '))
-            aistore.store_name(info)
-            info = int(input('아이디: '))
-            aistore.store_id(info)
-            info = int(input('재고개수: '))
-            aistore.get_count(info)
-            info = int(input('상품가격: '))
-            aistore.product_price(info)
+            info = input('이름:')
+            aistore.get_name()
+
+            info = input('아이디: ')
+            aistore.get_id()
+
+            info = input('재고개수: ')
+            aistore.get_count()
+
+            info = input('상품가격: ')
+            aistore.get_price()
 
         elif button == 2:
             info = int(input('구매할 상품 개수 입력: '))
